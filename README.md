@@ -1761,21 +1761,22 @@ These methods can be used to track the completion of items in the queue and wait
 
 # 5 — Queues
 
-asyncio.Queue in Python provides an asynchronous, non-thread-safe queue implementation designed for use within asyncio applications. It functions similarly to the standard library's queue.Queue but is tailored for async/await syntax. 
-Key Features and Usage: 
+`asyncio.Queue` in Python provides an asynchronous, non-thread-safe queue implementation designed for use within asyncio applications. It functions similarly to the standard library's queue.Queue but is tailored for async/await syntax. 
 
-- First-In, First-Out (FIFO): Items are retrieved in the order they were added, by default. 
-- Asynchronous Operations: 
+**Key Features and Usage:** 
+
+- **First-In, First-Out (FIFO):** Items are retrieved in the order they were added, by default. 
+- **Asynchronous Operations:** 
 	- await put(item): Adds an item to the queue. If the queue is full (when maxsize is set and reached), this operation will await until space becomes available. 
 	- await get(): Removes and returns an item from the queue. If the queue is empty, this operation will await until an item is available. 
 
-- Bounded or Unbounded: 
+- **Bounded or Unbounded:** 
 	- asyncio.Queue(maxsize=0): Creates an unbounded queue (default). 
 	- asyncio.Queue(maxsize=N): Creates a bounded queue that can hold at most N items. 
 
-- Producer-Consumer Pattern: asyncio.Queue is commonly used to implement the producer-consumer pattern in asynchronous applications. Producers add items to the queue, and consumer coroutines get items for processing. This allows for concurrent task execution and flow control. 
-- Not Thread-Safe: Unlike queue.Queue, asyncio.Queue is not designed for inter-thread communication. It's intended for managing tasks within a single asyncio event loop. 
-- task_done() and join(): Similar to queue.Queue, asyncio.Queue provides task_done() to indicate that a retrieved item has been processed and await join() to block until all items previously added to the queue have been marked as done. 
+- **Producer-Consumer Pattern:** `asyncio.Queue` is commonly used to implement the producer-consumer pattern in asynchronous applications. Producers add items to the queue, and consumer coroutines get items for processing. This allows for concurrent task execution and flow control. 
+- **Not Thread-Safe:** Unlike `queue.Queue`, `asyncio.Queue` is not designed for inter-thread communication. It's intended for managing tasks within a single asyncio event loop. 
+- **`task_done()` and `join()`:** Similar to `queue.Queue`, `asyncio.Queue` provides `task_done()` to indicate that a retrieved item has been processed and `await join()` to block until all items previously added to the queue have been marked as done. 
 
 Example: 
 ```py
